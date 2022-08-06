@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: AOP_1Proj
+netty:
+  default:
+    allocator:
+      max-order: 3
