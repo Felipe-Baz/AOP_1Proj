@@ -1,12 +1,14 @@
 package br.com.baz.interceptor
 
 import br.com.baz.annotation.Log
+import br.com.baz.utils.JsonHandler
 import com.google.gson.Gson
 import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
 import io.micronaut.http.HttpRequest
 import io.micronaut.json.tree.JsonObject
+import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import kotlin.reflect.typeOf
 
@@ -17,7 +19,10 @@ import kotlin.reflect.typeOf
 @InterceptorBean(Log::class)
 // Intercepta chamadas do tipo <Any, Any>
 class LogInterceptor: MethodInterceptor<Any, Any> {
-    var gson = Gson()
+
+    @Inject
+    lateinit var jsonHandler: JsonHandler
+
     // Intercept fun
     override fun intercept(context: MethodInvocationContext<Any, Any>): Any {
         // Entre os parametros imprime os headers
@@ -34,7 +39,7 @@ class LogInterceptor: MethodInterceptor<Any, Any> {
                 println(param.method)
             } else {
                 println("_________BODY_________")
-                println(param)
+                println(jsonHandler.objToJsonString(param))
             }
         }
         println("_________END_________")
