@@ -24,9 +24,8 @@ class LogInterceptor: MethodInterceptor<Any, Any> {
     lateinit var jsonHandler: JsonHandler
 
     // Intercept fun
-    override fun intercept(context: MethodInvocationContext<Any, Any>): Any {
+    override fun intercept(context: MethodInvocationContext<Any, Any>): Any? {
         // Entre os parametros imprime os headers
-        val param = context.parameterValues
         for (param in context.parameterValues) {
             if (param is HttpRequest<*>) {
                 println("_________HEADERS_________")
