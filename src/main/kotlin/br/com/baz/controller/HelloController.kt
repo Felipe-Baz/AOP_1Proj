@@ -10,9 +10,10 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 
 @Controller
-@Log
 @ErrorHandler
+@Log
 class HelloController {
+
     @Get
     fun hello(
         httpRequest: HttpRequest<*>
@@ -31,4 +32,5 @@ class HelloController {
     ) {
         throw IllegalArgumentException("Error Test")
     }
+
 }

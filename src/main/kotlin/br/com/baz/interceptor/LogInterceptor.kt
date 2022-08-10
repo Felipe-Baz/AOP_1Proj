@@ -7,10 +7,8 @@ import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
 import io.micronaut.http.HttpRequest
-import io.micronaut.json.tree.JsonObject
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import kotlin.reflect.typeOf
 
 
 // Define como Singleton
@@ -38,11 +36,11 @@ class LogInterceptor: MethodInterceptor<Any, Any> {
                 println(param.method)
             } else {
                 println("_________BODY_________")
-                println(jsonHandler.objToJsonString(param))
             }
         }
         println("_________END_________")
         return context.proceed()
+
     }
 
 }
